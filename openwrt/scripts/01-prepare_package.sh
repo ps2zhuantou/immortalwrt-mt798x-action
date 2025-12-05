@@ -18,33 +18,33 @@ function git_sparse_clone() {
 }
 
 # Go 1.25
-git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+git clone --depth=1 https://$github/sbwml/packages_lang_golang feeds/packages/lang/golang
 
 # OpenList 
-git clone --depth=1 https://github.com/sbwml/luci-app-openlist2 package/openlist
+git clone --depth=1 https://$github/sbwml/luci-app-openlist2 package/openlist
 
 # Mosdns
-git clone --depth=1 -b v5 https://github.com/sbwml/luci-app-mosdns package/mosdns
-git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+git clone --depth=1 -b v5 https://$github/sbwml/luci-app-mosdns package/mosdns
+git clone https://$github/sbwml/v2ray-geodata package/v2ray-geodata
 
 # Adguardhome
-git clone --depth=1 https://github.com/sirpdboy/luci-app-adguardhome package/luci-app-adguardhome
+git clone --depth=1 https://$github/sirpdboy/luci-app-adguardhome package/luci-app-adguardhome
 sed -i "s/\(option enabled '\)1'/\10'/" package/luci-app-adguardhome/luci-app-adguardhome/root/etc/config/AdGuardHome
 
 # 挂载插件
-git clone --depth=1 https://github.com/sirpdboy/luci-app-partexp.git package/luci-app-partexp
+git clone --depth=1 https://$github/sirpdboy/luci-app-partexp.git package/luci-app-partexp
 
 # 一键唤醒
-git_sparse_clone main https://github.com/sbwml/openwrt_pkgs luci-app-wolplus
+git_sparse_clone main https://$github/sbwml/openwrt_pkgs luci-app-wolplus
 
 # Lucky
-git clone --depth=1 https://github.com/gdy666/luci-app-lucky package/luci-app-lucky
+git clone --depth=1 https://$github/gdy666/luci-app-lucky package/luci-app-lucky
 
 # OpenAppFilter
-git clone --depth=1 https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
+git clone --depth=1 https://$github/destan19/OpenAppFilter.git package/OpenAppFilter
 
 # Argon 主题
-git clone --depth=1 https://github.com/QuickWrt/luci-theme-argon package/luci-theme-argon
+git clone --depth=1 https://$github/QuickWrt/luci-theme-argon package/luci-theme-argon
 
 # luci-app-bandix
 git clone https://$github/timsaya/luci-app-bandix package/new/luci-app-bandix
