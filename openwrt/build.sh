@@ -216,7 +216,6 @@ else
 fi
 
 # config-common
-# 配置选择，根据平台下载对应的默认 .config 文件
 case "$platform" in
     cetron-ct3003-ubootmod|cmcc-a10-ubootmod|h3c-magic-nx30-pro|imou-lc-hx3001|nokia-ea0326gmp|qihoo-360t7)
         curl -s "$mirror/openwrt/24-config-ax3000-common" >> .config
@@ -229,6 +228,8 @@ case "$platform" in
         ;;
 esac
 
+# config-general
+curl -s "$mirror/openwrt/24-config-general" >> .config
 
 # bpf
 [ "$ENABLE_BPF" = "y" ] && curl -s $mirror/openwrt/generic/config-bpf >> .config
