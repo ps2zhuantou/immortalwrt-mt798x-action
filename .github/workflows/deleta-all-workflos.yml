@@ -1,0 +1,37 @@
+name: 🗑️ 清理工作
+
+on:
+  workflow_dispatch:
+  workflow_run:       # 在 Build workflow 完成后触发
+    workflows: ["💻 固件编译"]
+    types:
+      - completed
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete all workflow runs
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // 获取所有工作流运行记录
+            const { data: runs } = await github.rest.actions.listWorkflowRunsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 100
+            });
+            
+            // 遍历删除每个运行记录
+            for (const run of runs.workflow_runs) {
+              try {
+                await github.rest.actions.deleteWorkflowRun({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id: run.id
+                });
+                console.log(`Deleted run ${run.id} from workflow ${run.workflow_id}`);
+              } catch (error) {
+                console.error(`Failed to delete run ${run.id}: ${error.message}`);
+              }
+            }
