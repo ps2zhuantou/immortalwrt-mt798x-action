@@ -141,6 +141,18 @@ case "$platform" in
         echo -e "${GREEN_COLOR}Model: JDCloud RE-CP-03${RES}"
         model="re-cp-03"
         ;;
+    all-mt7981-devices)
+        echo -e "${GREEN_COLOR}Model: ALL MT7981 Devices${RES}"
+        model="all-mt7981-devices"
+        ;;
+    all-mt7986-devices)
+        echo -e "${GREEN_COLOR}Model: ALL MT7986 Devices${RES}"
+        model="all-mt7986-devices"
+        ;;
+    all-high-power-devices)
+        echo -e "${GREEN_COLOR}Model: ALL High Power Devices${RES}"
+        model="all-high-power-devices"
+        ;;
 esac
 
 # print build opt
@@ -283,17 +295,26 @@ case "$platform" in
     jdcloud-re-cp-03)
         curl -s $mirror/openwrt/24-config-musl-re-cp-03 > .config
         ;;
+    all-mt7981-devices)
+        curl -s $mirror/openwrt/24-config-musl-all-mt7981-devices > .config
+        ;;
+    all-mt7986-devices)
+        curl -s $mirror/openwrt/24-config-musl-all-mt7986-devices > .config
+        ;;
+    all-high-power-devices)
+        curl -s $mirror/openwrt/24-config-musl-all-high-power-devices > .config
+        ;;
 esac
 
 # config-common
 case "$platform" in
-    cetron-ct3003|cmcc-a10|cmcc-rax3000m-emmc|umi-uax3000e|h3c-magic-nx30-pro|imou-lc-hx3001|nokia-ea0326gmp|philips-hy3000|qihoo-360t7|newland-nl-wr8103|xiaomi-mi-router-ax3000t)
+    cetron-ct3003|cmcc-a10|cmcc-rax3000m-emmc|umi-uax3000e|h3c-magic-nx30-pro|imou-lc-hx3001|nokia-ea0326gmp|philips-hy3000|qihoo-360t7|newland-nl-wr8103|xiaomi-mi-router-ax3000t|all-mt7981-devices)
         curl -s "$mirror/openwrt/24-config-ax3000-common" >> .config
         ;;
-    jdcloud-re-cp-03|xiaomi-redmi-router-ax6000|xiaomi-redmi-router-ax6000-512rom)
+    jdcloud-re-cp-03|xiaomi-redmi-router-ax6000|xiaomi-redmi-router-ax6000-512rom|all-mt7986-devices)
         curl -s "$mirror/openwrt/24-config-ax6000-common" >> .config
         ;;
-    clx-s20p|netcore-n60-pro|netcore-n60-pro-512rom)
+    clx-s20p|netcore-n60-pro|netcore-n60-pro-512rom|all-high-power-devices)
         curl -s "$mirror/openwrt/24-config-ipailna-high-power" >> .config
         ;;
 esac
